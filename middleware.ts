@@ -5,17 +5,14 @@ export default auth((req) => {
 
     const isAuthUser = req.auth;
 
-    if(isLoginPage && isAuthUser) {
-        return Response.redirect(new URL('/', req.url))
-    }
-
-    return Response.redirect(new URL('/login', req.url))
+        if(!isAuthUser) {
+            return Response.redirect(new URL('/login', req.url))
+        }
 }) 
  
 export const config = {
     matcher: [
         '/',
         '/editor/:path*',
-        '/login'
     ]
 }
