@@ -1,5 +1,5 @@
 import { getSession } from "@/actions/getCurrentSession";
-import { auth } from "@/auth";
+import { auth } from "@/lib/auth";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
