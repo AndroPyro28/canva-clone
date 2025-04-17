@@ -3,8 +3,8 @@ import React from 'react'
 
 export const Sidebar = () => {
   return (
-    <div>
+    <aside className='w-[72px] bg-[#f8f8fc] border-r '>
       Sidebar
-    </div>
+    </aside>
   )
 }

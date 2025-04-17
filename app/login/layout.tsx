@@ -18,7 +18,7 @@ export default async function LoginLayout({
         return redirect('/')
     }
   return (
-    <div className={`flex min-h-screen bg-white`}>
+    <div>
         {children}
     </div>
   );
