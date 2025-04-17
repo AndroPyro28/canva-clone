@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth";
  
 export const auth = betterAuth({
-    //...
+    // database (required)
     socialProviders: { 
         google: { 
            clientId: process.env.AUTH_GOOGLE_ID as string, 
