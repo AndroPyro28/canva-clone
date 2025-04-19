@@ -20,6 +20,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1 p-6 overflow-y-auto pt-20">
           <Banner />
+          {children}
         </main>
       </div>
     </div>

@@ -1,7 +1,7 @@
-import { Banner } from "./components/banner";
-import { Header } from "./components/header";
-import { Sidebar } from "./components/sidebar";
+import DesignTypes from "./components/design-types";
 
 export default function Home() {
-  return <div className=""></div>;
+  return <div className="">
+    <DesignTypes />
+  </div>;
 }
