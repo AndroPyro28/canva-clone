@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Explore with canva",
 };
 
-export default function RootLayout({
+export default function HomeLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -19,7 +19,7 @@ export default function RootLayout({
       <div className="flex-1 flex flex-col ml-[72px]">
         <Header />
         <main className="flex-1 p-6 overflow-y-auto pt-20">
-          <Banner />
+          {/* <Banner /> */}
           {children}
         </main>
       </div>
