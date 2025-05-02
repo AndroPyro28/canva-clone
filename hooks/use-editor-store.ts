@@ -3,10 +3,12 @@
 import { centerCanvas } from "@/lib/fabric";
 import { create } from "zustand";
 
+type canvas = string | null | any
+
 interface EditorStore {
-  canvas: string | null;
+  canvas: canvas;
   designId: string | null;
-  setCanvas: (canvas: string) => void;
+  setCanvas: (canvas: canvas) => void;
   setDesignId: (designId: string) => void;
   resetStore: () => void;
 };
