@@ -78,7 +78,7 @@ export const Canvas: React.FC<canvasProps> = () => {
     };
   }, []);
 
-  return <div className="relative w-full h-[600px] overflow-auto" ref={canvasContainerRef}>
+  return <div className="relative flex justify-center items-center w-full h-[600px] overflow-auto" ref={canvasContainerRef}>
 
     <canvas ref={canvasRef}>
 
