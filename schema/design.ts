@@ -11,7 +11,7 @@ export const DesignSchema = z.object({
     id: z.string().cuid(),
     userId: z.string().min(1, 'User ID required'),
     name: z.string().min(1, 'Name required'),
-    canvasData: z.string().min(1, 'Canvas Data required'),
+    canvasData: z.string().min(1, 'Canvas Data required').nullable(),
     width: z.number().min(1, 'width required'),
     height: z.number().min(1, 'height required'),
     category: z.nativeEnum(Category),

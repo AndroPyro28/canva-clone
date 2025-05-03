@@ -1,14 +1,15 @@
 "use client";
 
 import { centerCanvas } from "@/lib/fabric";
+import { Canvas } from "fabric";
 import { create } from "zustand";
 
-type canvas = string | null | any
+export type TCanvas = null | Canvas
 
 interface EditorStore {
-  canvas: canvas;
+  canvas: TCanvas;
   designId: string | null;
-  setCanvas: (canvas: canvas) => void;
+  setCanvas: (canvas: TCanvas) => void;
   setDesignId: (designId: string) => void;
   resetStore: () => void;
 };

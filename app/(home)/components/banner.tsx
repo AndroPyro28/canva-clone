@@ -27,7 +27,7 @@ export const Banner = () => {
   const handleCreateNewDesign = () => {
     const initialDesignData = {
       name: "Untitled design",
-      canvasData: "N/A",
+      canvasData: null,
       width: 825,
       height: 465,
       category: Category.YOUTUBE_THUMBNAIL,

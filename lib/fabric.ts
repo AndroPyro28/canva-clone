@@ -1,3 +1,6 @@
+import { TCanvas } from "@/hooks/use-editor-store"
+import { Canvas } from "fabric"
+
 export const initializeFabric = async (canvasEl: HTMLCanvasElement, containerEl: any) => {
     try {
         
@@ -25,6 +28,16 @@ export const initializeFabric = async (canvasEl: HTMLCanvasElement, containerEl:
     }
 }
 
-export const centerCanvas = (canvas:string) => {
-    if(!canvas) return;
+export const centerCanvas = (canvas:TCanvas) => {
+    if(!canvas || canvas.wrapperEl) return;
+    
+    const canvasWrapper = canvas.wrapperEl as Canvas['wrapperEl']
+    canvasWrapper.style.width = `${canvas.width}px`
+    canvasWrapper.style.height = `${canvas.height}px`
+    
+    canvasWrapper.style.position = `absolute`
+    canvasWrapper.style.left = `50%`
+    canvasWrapper.style.top = `50%`
+    canvasWrapper.style.transform = `translate(-50%, -50%)`;
+    
 }

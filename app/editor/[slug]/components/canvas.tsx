@@ -59,9 +59,11 @@ export const Canvas: React.FC<canvasProps> = () => {
 
         console.log("canvas init is done and set in store");
 
-        // apply custom style from the controls
-        // set up listeners
-        //TODO:  
+        //TODOs:  
+        //* apply custom style from the controls
+        //* set up listeners
+        
+        
         
         
       } catch (err) {
