@@ -18,7 +18,7 @@ export const Editor = () => {
   const designId = params?.slug;
   const [loadAttempted, setLoadAttempted] = useState(false);
 
-  const { canvas, setDesignId, resetStore } = useEditorStore();
+  const { canvas, setDesignId, resetStore, setName } = useEditorStore();
 
   const { isLoading, isError, refetch, data } =
     useQueryProcessor<TDesignSchema>({
@@ -79,6 +79,7 @@ export const Editor = () => {
         // set the design ID just incase after getting the data
         setDesignId(designId);
         const design = response.data;
+        setName(design.name)
         try {
           if (!design.canvasData) {
             console.log("no canvas data");

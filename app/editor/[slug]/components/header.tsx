@@ -39,11 +39,11 @@ export const Header = () => {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      </div>
-      <div className="">
-        <button className="header-button relative" title="save">
+
+        <button className="header-button relative ml-3" title="save">
           <Save className="size-5" />
         </button>
+
       </div>
 
       <div className="flex-1 flex justify-center max-w-md">

@@ -18,6 +18,8 @@ interface EditorStore {
   resetStore: () => void;
 }
 
+const DEFAULT_NAME = 'Untitled Design'
+
 export const useEditorStore = create<EditorStore>((set, get) => ({
   designId: null,
   setDesignId: (id) => set({ designId: id }),
@@ -25,10 +27,10 @@ export const useEditorStore = create<EditorStore>((set, get) => ({
   isEditing: true,
   setIsEditing: (flag) => set({ isEditing: flag }),
 
-  name: 'Untitled Design',
+  name: DEFAULT_NAME,
   setName: (value) => set({ name: value }),
 
-  resetStore: () => set({ canvas: null, designId: null, isEditing: true }),
+  resetStore: () => set({ canvas: null, designId: null, isEditing: true, name: DEFAULT_NAME }),
   canvas: null,
   setCanvas: (canvas) => {
     set({ canvas });
