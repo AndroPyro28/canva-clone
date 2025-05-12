@@ -63,9 +63,13 @@ export const Sidebar = () => {
     },
   ];
   const handleItemClick = (itemId: string) => {
-    if (itemId === activeSidebar && !isPanelCollapsed) return;
-    setActiveSidebar(itemId);
-    setIsPanelCollapsed(false);
+    if (itemId === activeSidebar && !isPanelCollapsed) {
+      setActiveSidebar(null);
+      setIsPanelCollapsed(true);
+    } else {
+      setActiveSidebar(itemId);
+      setIsPanelCollapsed(false);
+    }
   };
 
   const activeItem = sidebarItems.find((item) => item.id === activeSidebar);
@@ -78,6 +82,7 @@ export const Sidebar = () => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.stopPropagation();
+    setActiveSidebar(null);
     setIsPanelCollapsed(!isPanelCollapsed);
   };
 
@@ -98,25 +103,25 @@ export const Sidebar = () => {
           </div>
         ))}
       </aside>
-      {activeSidebar && (
-        <div
-          className={cn(
-            "secondary-panel w-[320px] overflow-visible",
-            isPanelCollapsed && "collapsed w-0 opacity-0 overflow-hidden"
-          )}
-        >
-          <div className="panel-header">
-            <button className="back-button" onClick={closeSecondaryPanel}>
-              <ArrowLeft className="size-5" />
-            </button>
-            <span className="panel-title">{activeItem?.label}</span>
-          </div>
-          <div className="panel-content">{activeItem?.panel}</div>
-          <button className="collapse-button" onClick={togglePanelCollapsed}>
-            <ChevronLeft className="size-5" />
+      <div
+        className={cn(
+          "secondary-panel w-0 opacity-0 overflow-hidden",
+          activeSidebar &&
+            !isPanelCollapsed &&
+            "w-[320px] overflow-visible opacity-100"
+        )}
+      >
+        <div className="panel-header">
+          <button className="back-button" onClick={closeSecondaryPanel}>
+            <ArrowLeft className="size-5" />
           </button>
+          <span className="panel-title">{activeItem?.label}</span>
         </div>
-      )}
+        <div className="panel-content">{activeItem?.panel}</div>
+        <button className="collapse-button" onClick={togglePanelCollapsed}>
+          <ChevronLeft className="size-5" />
+        </button>
+      </div>
     </div>
   );
 };
