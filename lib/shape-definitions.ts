@@ -49,3 +49,5 @@ export const shapeTypes: ['rectangle', 'circle'] = [
     'rectangle',
     'circle'
 ]
+
+export type TShapeType = typeof shapeTypes[number]

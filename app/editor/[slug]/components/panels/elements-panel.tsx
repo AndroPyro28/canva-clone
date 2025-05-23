@@ -1,11 +1,16 @@
 "use client";
 
 import { useEditorStore } from "@/hooks/use-editor-store";
-import { shapeDefinitions, shapeTypes } from "@/lib/shape-definitions";
+import { addShapeToCanvas } from "@/lib/fabric";
+import {
+  shapeDefinitions,
+  shapeTypes,
+  TShapeType,
+} from "@/lib/shape-definitions";
 import { useEffect, useRef, useState } from "react";
 
 export const ElementsPanel = () => {
-  const { canvas } = useEditorStore();
+  const { canvas, height, width } = useEditorStore();
   const miniCanvasRef = useRef<Record<string, any>>({});
   const canvasElementRef = useRef<any>({});
   const [isInitialized, setIsInitialized] = useState(false);
@@ -68,27 +73,38 @@ export const ElementsPanel = () => {
     };
   }, []);
 
-  const setCanvasRef = (element: HTMLCanvasElement | null , shapeType: typeof shapeTypes[number]) => {
-    if(element) {
-      canvasElementRef.current[shapeType] = element
+  const setCanvasRef = (
+    element: HTMLCanvasElement | null,
+    shapeType: TShapeType
+  ) => {
+    if (element) {
+      canvasElementRef.current[shapeType] = element;
     }
+  };
 
-  }
-  return <div className="h-full overflow-y-auto ">
-    <div className="p-4">
-      <div className="grid grid-cols-3 gap-1">
-        {
-          shapeTypes.map((shapeType, index) => (
-            <div key={shapeType} className="h-[90px] cursor-pointer flex flex-col items-center justify-center">
-              <canvas width={'100'} 
-              height={'100'}
+  const handleShapeClick = (type: TShapeType) => {
+    addShapeToCanvas(canvas, type, height, width);
+  };
 
-              ref={(el) => setCanvasRef(el, shapeType)}
+  return (
+    <div className="h-full overflow-y-auto ">
+      <div className="p-4">
+        <div className="grid grid-cols-3 gap-1">
+          {shapeTypes.map((shapeType, index) => (
+            <div
+              key={shapeType}
+              className="h-[90px] cursor-pointer flex flex-col items-center justify-center"
+              onClick={() => handleShapeClick(shapeType)}
+            >
+              <canvas
+                width={"100"}
+                height={"100"}
+                ref={(el) => setCanvasRef(el, shapeType)}
               />
             </div>
-          ))
-        }
+          ))}
+        </div>
       </div>
     </div>
-  </div>;
+  );
 };

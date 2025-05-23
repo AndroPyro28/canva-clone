@@ -18,7 +18,7 @@ export const Editor = () => {
   const designId = params?.slug;
   const [loadAttempted, setLoadAttempted] = useState(false);
 
-  const { canvas, setDesignId, resetStore, setName } = useEditorStore();
+  const { canvas, setDesignId, resetStore, setName, setHeight, setWidth  } = useEditorStore();
 
   const { isLoading, isError, refetch, data } =
     useQueryProcessor<TDesignSchema>({
@@ -86,18 +86,22 @@ export const Editor = () => {
             canvas.clear();
             canvas.setWidth(design.width);
             canvas.setHeight(design.height);
+            setHeight(design.height)
+            setWidth(design.width)
             canvas.backgroundColor = "white";
             canvas.renderAll();
             return;
           } 
-
           // if there is a canvas data
           // check if there is canvas with and height
           if(design.width && design.height) {
+            console.log('hello hittde')
             canvas.setDimensions({
               height: design.height,
-              width: design.width
+              width: design.width,
             })
+            setHeight(design.height)
+            setWidth(design.width)
           }
           const canvasData:any = typeof design.canvasData === "string" ?
           JSON.parse(design.canvasData) : design.canvasData
@@ -134,8 +138,8 @@ export const Editor = () => {
   }, [canvas, designId, loadDesign, loadAttempted, router]);
 
   return (
-    <>
+    <div className="">
       <Canvas />
-    </>
+    </div>
   );
 };
