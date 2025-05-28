@@ -95,7 +95,6 @@ export const Editor = () => {
           // if there is a canvas data
           // check if there is canvas with and height
           if(design.width && design.height) {
-            console.log('hello hittde')
             canvas.setDimensions({
               height: design.height,
               width: design.width,

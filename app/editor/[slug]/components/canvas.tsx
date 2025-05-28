@@ -10,7 +10,7 @@ export const Canvas: React.FC<canvasProps> = () => {
   const fabricCanvasRef = useRef<any>(null);
   const initAttemptedRef = useRef(false);
 
-  const { setCanvas } = useEditorStore();
+  const { setCanvas, height, width } = useEditorStore();
 
   useEffect(() => {
     const cleanUpCanvas = () => {
@@ -78,9 +78,9 @@ export const Canvas: React.FC<canvasProps> = () => {
     };
   }, []);
 
-  return <div className="relative flex justify-center items-center w-full h-[600px] overflow-auto" ref={canvasContainerRef}>
+  return <div className={"relative flex justify-center items-center w-full h-[600px] overflow-auto"} ref={canvasContainerRef}>
 
-    <canvas ref={canvasRef} className="overflow-auto" >
+    <canvas ref={canvasRef}>
 
     </canvas>
 

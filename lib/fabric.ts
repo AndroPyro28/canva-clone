@@ -48,6 +48,7 @@ export const centerCanvas = (canvas: TCanvas) => {
 export const addShapeToCanvas = async (
   canvas: TCanvas,
   shapeType: TShapeType,
+  //! height and width is the current size of the canvas
   height: number,
   width: number,
   customProps = {}
@@ -57,14 +58,13 @@ export const addShapeToCanvas = async (
   }
   try {
 
-    const fabricModule = await import("fabric");
-    const shape = createShape(fabricModule, shapeType, shapeDefinitions, {
+    const props = {
       left: (width/3),
       top: (height/3),
       ...customProps,
-    }) as TCreateShape & {
-      id?: string
     }
+    
+    const shape = createShape(shapeType, props) as TCreateShape & { id?: string }
 
     if(shape) {
         shape.id = `${shapeType}-${Date.now()}`
@@ -73,5 +73,7 @@ export const addShapeToCanvas = async (
         canvas.renderAll()
         return shape
     }
-  } catch (error) {}
+  } catch (error) {
+    console.error("error adding shape to the canvas", error)
+  }
 };

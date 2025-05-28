@@ -81,7 +81,7 @@ export const ElementsPanel = () => {
       canvasElementRef.current[shapeType] = element;
     }
   };
-
+  //! height and width is the current size of the canvas
   const handleShapeClick = (type: TShapeType) => {
     addShapeToCanvas(canvas, type, height, width);
   };
