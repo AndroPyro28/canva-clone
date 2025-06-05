@@ -1,6 +1,6 @@
 import { Canvas, StaticCanvas, StaticCanvasEvents } from "fabric";
 import { HeartIcon } from "lucide-react";
-const SHAPES_COLOR = "violet"
+const SHAPES_COLOR = "#000000"
 export const shapeDefinitions = {
   rectangle: {
     type: "rect",

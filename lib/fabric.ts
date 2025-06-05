@@ -57,23 +57,62 @@ export const addShapeToCanvas = async (
     return null;
   }
   try {
-
     const props = {
-      left: (width/3),
-      top: (height/3),
+      left: width / 3,
+      top: height / 3,
       ...customProps,
-    }
-    
-    const shape = createShape(shapeType, props) as TCreateShape & { id?: string }
+    };
 
-    if(shape) {
-        shape.id = `${shapeType}-${Date.now()}`
-        canvas.setActiveObject(shape)
-        canvas.add(shape)
-        canvas.renderAll()
-        return shape
+    const shape = createShape(shapeType, props) as TCreateShape & {
+      id?: string;
+    };
+
+    if (shape) {
+      shape.id = `${shapeType}-${Date.now()}`;
+      canvas.add(shape);
+      canvas.setActiveObject(shape);
+      canvas.renderAll();
+      return shape;
     }
   } catch (error) {
-    console.error("error adding shape to the canvas", error)
+    console.error("error adding shape to the canvas", error);
+  }
+};
+
+export const addTextToCanvas = async (
+  canvas: TCanvas,
+  text: string,
+  height: number,
+  width: number,
+  options = {},
+  withBackground = false
+) => {
+  if (!canvas) return null;
+  try {
+    const { IText } = await import("fabric");
+
+    const defaultProps = {
+      left: width / 3,
+      top: height / 3,
+      fontSize: 24,
+      fontFamily: "Arial",
+      fill: "#000000",
+      padding: withBackground ? 10 : 0,
+      textAlign: "left",
+      id: `text-${Date.now()}`,
+    };
+
+    const textObj = new IText(text, {
+      ...defaultProps,
+      ...options,
+    });
+
+    canvas.add(textObj);
+    canvas.setActiveObject(textObj);
+    canvas.renderAll();
+
+    return textObj;
+  } catch (error) {
+    console.error(error);
   }
 };

@@ -115,6 +115,7 @@ import {
     "#F0F4C3",
   ];
   
+  export type TtextPresets = typeof textPresets[number]
   export const textPresets = [
     {
       name: "Heading",
